@@ -1,0 +1,180 @@
+:root {
+    /* 核心国风配色 */
+    --primary: #9D1D21;       /* 主色：故宫朱红 */
+    --secondary: #CEA543;     /* 次色：鎏金铜色 */
+    --accent: #FF4D4D;        /* 强调色：旗帜红 */
+    --golden: #FFD700;        /* 金色：国徽标准金 */
+    --ink: #3A2E26;           /* 墨色：传统墨锭色 */
+    --silk: #FFF3E0;          /* 丝绸白 */
+    --bamboo: #455A64;        /* 竹青：建筑元素 */
+    --contrast-text: #FFFFFF; /* 正白色 */
+    --text: var(--ink);       /* 新增文字主色 */
+}
+
+/* 全局盒模型 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: calc(导航栏高度 + 100px);
+    font-family: 'Noto Serif SC', serif;
+    line-height: 1.8;
+    color: var(--ink);
+    background-color: var(--background-color);
+    background-image: 
+        radial-gradient(circle at 90% 10%, rgba(157,29,33,0.05) 0%, transparent 30%),
+        linear-gradient(15deg, rgba(206,165,67,0.03) 0%, transparent 30%);
+    text-align: center;
+    text-shadow:0 2px 3px rgba(0,0,0,0.1);
+}
+
+/* =============== 导航栏 =============== */
+.navbar {
+
+    background: var(--secondary);
+    padding: 1.2rem;
+    position: fixed;
+    top: 0;
+    left :0;
+    right: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid var(--primary);
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+/* 若导航栏是固定定位 */
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: white; /* 添加背景色 */
+}
+
+
+/* 内容区域容器 */
+main {
+    flex: 1;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1); /* 半透明蒙版 */
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* 全局装饰背景 */
+body {
+  position: relative;
+  overflow-x: hidden;
+  padding: 80px 0 40px;
+}
+
+/* 五星飘落效果 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  right: 40px;
+  bottom: 40px;
+  background-image: 
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0l3.09 6.26L22 7.27l-5 4.87 1.18 6.88L12 16l-6.18 3.02L7 12.14 2 7.27l6.91-1.01L12 0z" fill="%23ffd700"/></svg>'),
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c3.31 0 6 2.69 6 6 0 4-6 10-6 10S6 10 6 6c0-3.31 2.69-6 6-6zm0 2c-2.21 0-4 1.79-4 4 0 3 4 8 4 8s4-5 4-8c0-2.21-1.79-4-4-4z" fill="%23e91e63"/></svg>');
+  opacity: 0.2;
+  z-index: -2;
+  animation: stars 50s linear infinite;
+}
+
+/* 边框装饰 */
+body::after {
+  content: "";
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 2px solid #ffd700;
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+strong {
+  background: linear-gradient(transparent 60%, rgba(255, 215, 0, 0.38) 90%);
+  display: inline-block;  /* 强制为块级特性 */
+  padding-bottom: 2px;    /* 增加底部空间，凸显渐变 */
+}
+
+@keyframes stars {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(100vh) rotate(360deg); }
+}
+
+/* 文字段落装饰 */
+p, li, h2, h3 {
+  position: relative;
+  padding: 8px 0;
+}
+
+p::before,
+li::before {
+  content: "★";
+  color: #ffd700;
+  margin-right: 10px;
+}
+
+/* 新增列表样式重置 */
+ul, ol {
+  list-style: none;
+  padding-left: 0;
+}
+h2::after,
+h3::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 20px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c3.31 0 6 2.69 6 6 0 4-6 10-6 10S6 10 6 6c0-3.31 2.69-6 6-6zm0 2c-2.21 0-4 1.79-4 4 0 3 4 8 4 8s4-5 4-8c0-2.21-1.79-4-4-4z" fill="%23e91e63"/></svg>');
+  background-repeat: repeat;
+  margin: 10px auto;
+}
+
+/* 新增视频错误提示样式 */
+.video-error {
+  padding: 1rem;
+  background: #ffe6e6;
+  border: 1px solid #ff9999;
+  color: #cc0000;
+  margin-top: 1rem;
+}
+
+.video-wrapper {
+  position: relative;
+  margin: 2rem 0;
+}
+
+
+
